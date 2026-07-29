@@ -7,7 +7,7 @@ from telegram.ext import (
     filters
 )
 
-TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"
+TOKEN = "8660493419:AAG5e2mx4PPfcWDGO6Aax6Uf89WjozwBk8c"
 
 
 # START
@@ -118,7 +118,8 @@ async def menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]:
 
         keyboard = [
-            ["📈 Economics", "💻 Computer Science"],
+            ["📈 Economics"],
+            ["💻 Computer Science"],
             ["💼 Business & Management"],
             ["💰 Finance & Accounting"],
             ["📜 Political Science"],
@@ -169,7 +170,7 @@ async def menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
 
-    app = Application.builder().token(TOKEN).build()
+    app = Application.builder().token(8660493419:AAG5e2mx4PPfcWDGO6Aax6Uf89WjozwBk8c).build()
 
     app.add_handler(CommandHandler("start", start))
 
