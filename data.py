@@ -67,7 +67,7 @@ GUIDES_TEXT = (
     "📣 Join our Telegram channel to access all guides and future updates:"
 )
 # ссылка на канал — впиши сюда свою
-GUIDES_CHANNEL_URL = "https://t.me/your_channel"
+GUIDES_CHANNEL_URL = "https://t.me/oppbridge"
 
 COMMUNITY_TEXT = (
     "👥 Opportunity Bridge Community\n\n"
@@ -84,7 +84,7 @@ COMMUNITY_TEXT = (
     "Join us and grow together!"
 )
 # ссылка на группу/чат — впиши сюда свою
-COMMUNITY_CHAT_URL = "https://t.me/your_community"
+COMMUNITY_CHAT_URL = "https://t.me/oppbridge_01"
 
 ABOUT_TEXT = (
     "ℹ️ About Opportunity Bridge\n\n"
