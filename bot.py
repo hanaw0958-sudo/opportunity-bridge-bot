@@ -208,6 +208,13 @@ def handle_callback(call):
     data_str = call.data
     chat_id = call.message.chat.id
 
+    # Удаляем предыдущее сообщение с кнопками, чтобы в чате не копились
+    # старые меню, которыми пользователь уже воспользовался.
+    try:
+        bot.delete_message(chat_id, call.message.message_id)
+    except Exception:
+        pass  # сообщение могло быть уже удалено или слишком старое — не страшно
+
     if data_str == "menu:main":
         show_main_menu(chat_id)
 
