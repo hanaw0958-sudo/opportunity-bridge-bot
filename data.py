@@ -7,27 +7,22 @@
 # ---------- Стандартные списки стран ----------
 
 STANDARD_COUNTRIES = [
-    "USA", "Germany", "United Kingdom", "Canada",
-    "Netherlands", "Japan", "Italy", "Hungary",
-    "South Korea", "China",
+    "🇺🇸 USA", "🇩🇪 Germany", "🇬🇧 United Kingdom", "🇨🇦 Canada",
+    "🇳🇱 Netherlands", "🇯🇵 Japan", "🇮🇹 Italy", "🇭🇺 Hungary",
+    "🇰🇷 South Korea", "🇨🇳 China",
 ]
 
-EXCHANGE_COUNTRIES = STANDARD_COUNTRIES + ["Worldwide"]
-
-INTERNSHIP_COUNTRIES = [
-    "USA", "Germany", "United Kingdom", "Canada",
-    "Netherlands", "Japan", "Italy", "China",
-]
+EXCHANGE_COUNTRIES = STANDARD_COUNTRIES + ["🌍 Worldwide"]
 
 VOLUNTEER_COUNTRIES = STANDARD_COUNTRIES + [
-    "Uzbekistan", "Kazakhstan", "Kyrgyzstan", "Russia",
+    "🇺🇿 Uzbekistan", "🇰🇿 Kazakhstan", "🇰🇬 Kyrgyzstan", "🇷🇺 Russian",
 ]
 
 # ---------- Уровни образования ----------
 
-LEVELS_FULL = ["Middle School", "High School", "Bachelor's", "Master's", "PhD"]
+LEVELS_FULL = ["🎒 Middle School", "🏫 High School", "🏛️ Bachelor's", "🎓 Master's", "PhD"]
 LEVELS_NO_SCHOOL = ["Bachelor's", "Master's", "PhD"]
-LEVELS_NO_MIDDLE = ["High School", "Bachelor's", "Master's", "PhD"]
+LEVELS_NO_MIDDLE = ["High School", "Bachelor's", "Master's", "📚 PhD"]
 
 # ---------- Главное меню ----------
 
@@ -44,13 +39,13 @@ MAIN_MENU_TEXT = "⭐ What would you like to do?"
 MAIN_MENU_BUTTONS = [
     ("🔍 Find opportunities", "menu:find"),
     ("📣 Share an Opportunity", "menu:share"),
-    ("🎁 Application guides", "menu:guides"),
+    ("📝 Application guides", "menu:guides"),
     ("👥 Community", "menu:community"),
     ("ℹ️ About Opportunity Bridge", "menu:about"),
 ]
 
 GUIDES_TEXT = (
-    "🎁 Application Guides\n"
+    "📝 Application Guides\n"
     "We've put together a collection of practical guides to help you prepare "
     "stronger applications for scholarships, internships, exchange programs, "
     "and universities. 📚\n\n"
@@ -60,9 +55,9 @@ GUIDES_TEXT = (
     "💡 Personal Statement\n"
     "💌 Recommendation Letters\n"
     "📋 Required Documents\n"
-    "✍️ Interview Preparation\n"
+    "🎤 Interview Preparation\n"
     "⏱ Application Timeline\n"
-    "📎 Useful Resources\n"
+    "💻 Useful Resources\n"
     "🏆 Accepted Students' Tips\n\n"
     "📣 Join our Telegram channel to access all guides and future updates:"
 )
@@ -104,7 +99,7 @@ SHARE_TEXT = (
     "💰 Funding\n"
     "⏳ Deadline\n"
     "🔗 Official Link\n"
-    "🎁 Requirements\n\n"
+    "📑 Requirements\n\n"
     "📤 Send your submission here: @hanaw_095\n"
     "✅ Once you're done, press I'm Done."
 )
@@ -115,7 +110,7 @@ THANK_YOU_TEXT = (
     "🔍 Our team will carefully review the information. If it meets our quality "
     "standards, it will be added to Opportunity Bridge to help students around "
     "the world. 🌍\n"
-    "💙 Thank you for making educational opportunities more accessible!"
+    "💚 Thank you for making educational opportunities more accessible!"
 )
 
 FIND_TEXT = "🌍 Find International Opportunities\n\nSelect the type of opportunity you're looking for."
@@ -124,50 +119,50 @@ FIND_TEXT = "🌍 Find International Opportunities\n\nSelect the type of opportu
 # sheet_type -> должно совпадать со значением в колонке "Type" твоей Google Sheet
 
 FIELDS_ACADEMIC = [
-    "Economics", "Computer Science", "Business & Management", "Finance & Accounting",
-    "Political Science", "International Relations", "Languages & Linguistics", "Law",
-    "Engineering", "Data Science & AI", "Natural Sciences", "Medicine & Health",
-    "Graphic & Product Design", "Media & Film", "Architecture", "Journalism",
-    "Exact Science", "All Fields",
+    "📈 Economics", "💻 Computer Science", "💼 Business & Management", "💰 Finance & Accounting",
+    "🏛️ Political Science", "🌍 International Relations", "🗣️ Languages & Linguistics", "⚖️ Law",
+    "⚙️ Engineering", "📊 Data Science & AI", "🌱 Natural Sciences", "🩺 Medicine & Health",
+    "🎨 Graphic & Product Design", "🎬 Media & Film", "🏛️ Architecture", "📰 Journalism",
+    "📑 Exact Science", "🌐 All Fields",
 ]
 
 FIELDS_SUMMER = [
-    "STEM & Technology", "Computer Science", "Business & Entrepreneurship",
-    "Medicine & Health Sciences", "Law", "Political Science", "Art & Design",
-    "Performing Arts & Music", "Languages", "International Relations",
-    "Environmental Science", "Leadership", "Humanities & Literature",
-    "Exact Science", "Natural Science", "Media & Journalism", "Critical Thinking",
-    "All Fields",
+    "🔬 STEM & Technology", "💻 Computer Science", "💰 Business & Entrepreneurship",
+    "🩺 Medicine & Health Sciences", "⚖️ Law", "🏛️ Political Science", "🎨 Art & Design",
+    "🎭 Performing Arts & Music", "🗣️ Languages", "🌍 International Relations",
+    "🌱 Environmental Science", "👑 Leadership", "📚 Humanities & Literature",
+    "📑 Exact Science", "🌱 Natural Science", "📸 Media & Journalism", "🧩 Critical Thinking",
+    "🌐 All Fields",
 ]
 
 FIELDS_INTERNSHIP = [
-    "Data Science", "Finance & Banking", "Business & Consulting", "Marketing & Sales",
-    "Medicine & Health Sciences", "Law", "Political Science", "Human Resources",
-    "Computer Science", "Engineering", "Media & Communications", "Environmental Science",
-    "International Relations", "Hospitality & Tourism", "Art & Design",
-    "Exact Science", "Natural Science", "All Fields",
+    "📊 Data Science & AI", "💰 Finance & Banking", "📈 Business & Consulting", "📣 Marketing & Sales",
+    "🩺 Medicine & Health Sciences", "⚖️ Law", "Political Science", "👥 Human Resources",
+    "💻 Computer Science", "⚙️ Engineering", "📸 Media & Communications", "🌱 Environmental Science",
+    "🌍 International Relations", "🍳 Hospitality & Tourism", "🎨 Art & Design",
+    "📑 Exact Science", "🌱 Natural Science", "🌐 All Fields",
 ]
 
 FIELDS_COMPETITION = [
-    "Science & Engineering", "Mathematics", "Coding", "Robotics & Technology",
-    "Business & Entrepreneurship", "Law", "Economics", "Political Science", "Debate",
-    "Art & Design", "Writing & Essay", "MUN", "Environmental Science", "Leadership",
-    "Medicine & Health Sciences", "All Fields",
+    "🔬 Science & Engineering", "🔢 Mathematics", "💻 Coding", "🤖 Robotics & Technology",
+    "💰 Business & Entrepreneurship", "⚖️ Law", "📈 Economics", "🏛️ Political Science", "🗣️ Debate",
+    "🎨 Art & Design", "✍️ Writing & Essay", "🌍 MUN", "🌱 Environmental Science", "👑 Leadership",
+    "🩺 Medicine & Health Sciences", "🌐 All Fields",
 ]
 
 FIELDS_RESEARCH = [
-    "STEM & Natural Sciences", "Biology & Life Sciences", "Computer Science",
-    "Engineering", "Chemistry", "Physics", "Data Science & AI",
-    "Medicine & Health Sciences", "Environmental Science", "Psychology & Neuroscience",
-    "Economics", "Political Science", "Humanities & Social Sciences",
-    "International Relations", "All Fields",
+    "🔬 STEM & Natural Sciences", "🧬 Biology & Life Sciences", "💻 Computer Science",
+    "⚙️ Engineering", 🧪 Chemistry", "🔭 Physics", "Data Science & AI",
+    "🩺 Medicine & Health Sciences", "🌱 Environmental Science", "🧠 Psychology & Neuroscience",
+    "📈 Economics", "🏛️ Political Science", "📚 Humanities & Social Sciences",
+    "🌍 International Relations", "🌐 All Fields",
 ]
 
 FIELDS_VOLUNTEER = [
-    "Environmental", "Health & Medical Aid", "Education & Tutoring",
-    "Community Development", "Poverty & Hunger Relief", "Animal Welfare",
-    "Human Rights / Social Justice", "Youth & Children Programs", "Arts & Culture",
-    "All Fields",
+    "🌱Environmental", "🩺 Health & Medical Aid", "📚 Education & Tutoring",
+    "🏠 Community Development", "🍲 Poverty & Hunger Relief", "🐾 Animal Welfare",
+    "⚖️ Human Rights / Social Justice", "🧒 Youth & Children Programs", "🎨 Arts & Culture",
+    "🌐 All Fields",
 ]
 
 CATEGORIES = [
@@ -272,7 +267,6 @@ COUNTRY_STEP_TEXT = "🌍 Choose Your Destination\nWhich country's opportunities
 FIELD_STEP_TEXT = (
     "📌 Choose Your Field of Study\n"
     "Select the category that matches your interests.\n"
-    "💡 Tip: Tap \"All Fields\" to widen your search and see every option available!"
 )
 NO_RESULTS_TEXT = (
     "😕 No matching opportunities found yet.\n"
