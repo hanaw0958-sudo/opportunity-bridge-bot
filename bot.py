@@ -29,7 +29,7 @@ SHEET_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?forma
 # поэтому в пути вебхука используем токен с заменённым двоеточием.
 WEBHOOK_PATH = "/webhook/" + BOT_TOKEN.replace(":", "_")
 
-bot = telebot.TeleBot(BOT_TOKEN)
+bot = telebot.TeleBot(BOT_TOKEN, threaded=False)
 
 # По умолчанию telebot молча "проглатывает" ошибки внутри обработчиков —
 # добавляем вывод логов, чтобы видеть настоящую причину в Render → Logs.
