@@ -24,6 +24,10 @@ WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "")  # заполняется на �
 
 SHEET_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv"
 
+# Двоеточие внутри токена ломает разбор пути в некоторых версиях Flask/Werkzeug,
+# поэтому в пути вебхука используем токен с заменённым двоеточием.
+WEBHOOK_PATH = "/webhook/" + BOT_TOKEN.replace(":", "_")
+
 bot = telebot.TeleBot(BOT_TOKEN)
 app = Flask(__name__)
 
@@ -254,7 +258,7 @@ def handle_callback(call):
 
 # ---------- Flask / webhook ----------
 
-@app.route(f"/{8660493419:AAHG1YmofCBPPgrrSvHS7tX23JK5-hSk0L0}", methods=["POST"])
+@app.route(WEBHOOK_PATH, methods=["POST"])
 def telegram_webhook():
     json_str = request.get_data().decode("utf-8")
     update = telebot.types.Update.de_json(json_str)
@@ -267,10 +271,17 @@ def index():
     return "Opportunity Bridge bot is running.", 200
 
 
+# Вебхук ставим сразу при импорте модуля — gunicorn импортирует bot.py,
+# но не выполняет блок "if __name__ == '__main__'", так что регистрировать
+# вебхук нужно здесь, а не только при прямом запуске.
+if WEBHOOK_URL:
+    try:
+        bot.remove_webhook()
+        bot.set_webhook(url=f"{WEBHOOK_URL}{WEBHOOK_PATH}")
+        print("Webhook set to:", f"{WEBHOOK_URL}{WEBHOOK_PATH}")
+    except Exception as e:
+        print("Не удалось установить вебхук:", e)
+
 if __name__ == "__main__":
-    bot.remove_webhook()
-    if WEBHOOK_URL:
-        bot.set_webhook(url=f"{WEBHOOK_URL}/{BOT_TOKEN}")
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-    main()
