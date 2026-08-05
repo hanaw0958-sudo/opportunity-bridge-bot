@@ -6,6 +6,7 @@ Opportunity Bridge — Telegram-бот.
 
 import csv
 import io
+import logging
 import os
 import time
 
@@ -29,6 +30,13 @@ SHEET_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?forma
 WEBHOOK_PATH = "/webhook/" + BOT_TOKEN.replace(":", "_")
 
 bot = telebot.TeleBot(BOT_TOKEN)
+
+# По умолчанию telebot молча "проглатывает" ошибки внутри обработчиков —
+# добавляем вывод логов, чтобы видеть настоящую причину в Render → Logs.
+logging.basicConfig(level=logging.INFO)
+telebot.logger.setLevel(logging.ERROR)
+telebot.logger.addHandler(logging.StreamHandler())
+
 app = Flask(__name__)
 
 # chat_id -> {"cat": int, "level_idx": int, "ctry_idx": int}
@@ -260,9 +268,13 @@ def handle_callback(call):
 
 @app.route(WEBHOOK_PATH, methods=["POST"])
 def telegram_webhook():
-    json_str = request.get_data().decode("utf-8")
-    update = telebot.types.Update.de_json(json_str)
-    bot.process_new_updates([update])
+    try:
+        json_str = request.get_data().decode("utf-8")
+        update = telebot.types.Update.de_json(json_str)
+        bot.process_new_updates([update])
+    except Exception:
+        import traceback
+        traceback.print_exc()
     return "OK", 200
 
 
