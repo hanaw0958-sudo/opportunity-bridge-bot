@@ -268,10 +268,12 @@ def handle_callback(call):
 
 @app.route(WEBHOOK_PATH, methods=["POST"])
 def telegram_webhook():
+    json_str = request.get_data().decode("utf-8")
+    print("INCOMING UPDATE:", json_str, flush=True)
     try:
-        json_str = request.get_data().decode("utf-8")
         update = telebot.types.Update.de_json(json_str)
         bot.process_new_updates([update])
+        print("UPDATE PROCESSED OK", flush=True)
     except Exception:
         import traceback
         traceback.print_exc()
