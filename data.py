@@ -266,7 +266,7 @@ CATEGORIES = [
 COUNTRY_STEP_TEXT = "🌍 Choose Your Destination\nWhich country's opportunities would you like to explore?"
 FIELD_STEP_TEXT = (
     "📌 Choose Your Field of Study\n"
-    "Select the category that matches your interests."
+    "Select the category that matches your interests.\n"
 )
 NO_RESULTS_TEXT = (
     "😕 No matching opportunities found yet.\n"
