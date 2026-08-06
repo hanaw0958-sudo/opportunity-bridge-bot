@@ -52,6 +52,7 @@ CACHE_SECONDS = 120
 def fetch_rows():
     now = time.time()
     if now - _sheet_cache["ts"] < CACHE_SECONDS and _sheet_cache["rows"]:
+        print(f"DEBUG: используем кэш, строк: {len(_sheet_cache['rows'])}", flush=True)
         return _sheet_cache["rows"]
     try:
         resp = requests.get(SHEET_CSV_URL, timeout=10)
@@ -60,9 +61,12 @@ def fetch_rows():
         rows = list(reader)
         _sheet_cache["rows"] = rows
         _sheet_cache["ts"] = now
+        print(f"DEBUG: загружено строк из Google Sheet: {len(rows)}", flush=True)
+        if rows:
+            print(f"DEBUG: колонки: {list(rows[0].keys())}", flush=True)
         return rows
     except Exception as e:
-        print("Ошибка чтения Google Sheet:", e)
+        print("Ошибка чтения Google Sheet:", e, flush=True)
         return _sheet_cache["rows"]  # вернём старый кэш, если запрос упал
 
 
@@ -72,6 +76,10 @@ def normalize(text):
 
 def filter_opportunities(category, level, country, field):
     rows = fetch_rows()
+    print(f"DEBUG: фильтр — category={category['sheet_type']!r} level={level!r} "
+          f"country={country!r} field={field!r}, всего строк={len(rows)}", flush=True)
+
+    after_type = after_level = after_country = 0
     results = []
     for row in rows:
         row_type = normalize(row.get("Type"))
@@ -80,15 +88,18 @@ def filter_opportunities(category, level, country, field):
             accepted_types = [accepted_types]
         if row_type not in [normalize(t) for t in accepted_types]:
             continue
+        after_type += 1
 
         row_level = normalize(row.get("Level"))
         if row_level != normalize(level):
             continue
+        after_level += 1
 
         if country.lower() != "worldwide":
             row_country = normalize(row.get("Country"))
             if row_country != normalize(country):
                 continue
+        after_country += 1
 
         if field.lower() not in ("all fields",):
             row_field = normalize(row.get("Field of Study"))
@@ -96,6 +107,9 @@ def filter_opportunities(category, level, country, field):
                 continue
 
         results.append(row)
+
+    print(f"DEBUG: после Type={after_type}, после Level={after_level}, "
+          f"после Country={after_country}, итог={len(results)}", flush=True)
     return results
 
 
