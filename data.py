@@ -175,7 +175,7 @@ CATEGORIES = [
     {
         "key": "scholarships",
         "button": "🎓 Scholarships",
-        "sheet_type": "Scholarship",
+        "sheet_type": ["Scholarship", "Scholarships"],
         "intro": (
             "🎓 Scholarships & Financial Aid\n"
             "Let's help you find scholarships that match your goals. ✨\n"
@@ -188,7 +188,7 @@ CATEGORIES = [
     {
         "key": "exchange",
         "button": "✈️ Exchange Programs",
-        "sheet_type": "Exchange Program",
+        "sheet_type": ["Exchange Program", "Exchange Programs"],
         "intro": (
             "✈️ Ready to study abroad and experience a new culture?\n"
             "Let's find the best exchange programs for you! ✈️\n"
@@ -201,7 +201,7 @@ CATEGORIES = [
     {
         "key": "summer",
         "button": "☀️ Summer Schools",
-        "sheet_type": "Summer School",
+        "sheet_type": ["Summer School", "Summer Schools"],
         "intro": (
             "☀️ Discover Summer Schools Around the World\n"
             "Explore international summer schools tailored to your profile! ✨\n"
@@ -214,7 +214,7 @@ CATEGORIES = [
     {
         "key": "internships",
         "button": "💼 Internships",
-        "sheet_type": "Internship",
+        "sheet_type": ["Internship", "Internships"],
         "intro": (
             "💼 Find International Internships\n"
             "Take the next step in your career — explore internship opportunities "
@@ -228,7 +228,7 @@ CATEGORIES = [
     {
         "key": "competitions",
         "button": "🏆 Competitions",
-        "sheet_type": "Competition",
+        "sheet_type": ["Competition", "Competitions"],
         "intro": (
             "🏆 Explore International Competitions\n"
             "Discover academic, business, science, technology, and leadership "
@@ -242,7 +242,7 @@ CATEGORIES = [
     {
         "key": "research",
         "button": "🔬 Research Opportunities",
-        "sheet_type": "Research Opportunity",
+        "sheet_type": ["Research Opportunity", "Research Opportunities"],
         "intro": (
             "🔬 Discover Research Opportunities\n"
             "Find research programs, laboratories, academic projects, and research "
@@ -256,9 +256,9 @@ CATEGORIES = [
     {
         "key": "volunteer",
         "button": "🤝 Volunteer Programs",
-        "sheet_type": "Volunteer Program",
+        "sheet_type": ["Volunteer Program", "Volunteer Programs"],
         "intro": (
-            "🤝 Volunteer Around the World\n"
+            "💚 Volunteer Around the World\n"
             "Explore volunteer and community service opportunities that let you "
             "gain experience while making a positive impact.\n"
             "🎓 Choose your academic level:"
