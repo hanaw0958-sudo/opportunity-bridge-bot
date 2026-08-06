@@ -121,17 +121,17 @@ def filter_opportunities(category, level, country, field):
 
 
 def format_result(row):
-    parts = [f"🎓 {row.get('Opportunity', '').strip()}"]
+    parts = [f"🎓 Opportunity: {row.get('Opportunity').strip()}"]
     if row.get("Country"):
-        parts.append(f"🌍 {row['Country'].strip()}")
+        parts.append(f"🌍 Country: {row['Country'].strip()}")
     if row.get("Field of Study"):
-        parts.append(f"📚 {row['Field of Study'].strip()}")
+        parts.append(f"📚 Field of Study: {row['Field of Study'].strip()}")
     if row.get("Funding"):
-        parts.append(f"💰 {row['Funding'].strip()}")
+        parts.append(f"💰 Funding: {row['Funding'].strip()}")
     if row.get("Deadline"):
         parts.append(f"⏳ Deadline: {row['Deadline'].strip()}")
     if row.get("Requirements"):
-        parts.append(f"📋 {row['Requirements'].strip()}")
+        parts.append(f"📋 Requirements: {row['Requirements'].strip()}")
     if row.get("Official Link"):
         parts.append(f"🔗 {row['Official Link'].strip()}")
     return "\n".join(parts)
