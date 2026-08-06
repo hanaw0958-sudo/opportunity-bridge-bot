@@ -121,7 +121,7 @@ def filter_opportunities(category, level, country, field):
 
 
 def format_result(row):
-    parts = [f"🎓 Opportunity: {row.get('Opportunity').strip()}"]
+    parts = [f"🎓 Opportunity: {row.get('Opportunity', '').strip()}"]
     if row.get("Country"):
         parts.append(f"🌍 Country: {row['Country'].strip()}")
     if row.get("Field of Study"):
