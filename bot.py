@@ -56,6 +56,7 @@ def fetch_rows():
         return _sheet_cache["rows"]
     try:
         resp = requests.get(SHEET_CSV_URL, timeout=10)
+        resp.encoding = "utf-8"
         resp.raise_for_status()
         reader = csv.DictReader(io.StringIO(resp.text))
         rows = list(reader)
