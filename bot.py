@@ -59,7 +59,8 @@ def fetch_rows():
         resp.encoding = "utf-8"
         resp.raise_for_status()
         reader = csv.DictReader(io.StringIO(resp.text))
-        rows = list(reader)
+        reader.fieldnames = [h.strip() for h in reader.fieldnames]
+        rows = [{ (k or "").strip(): v for k, v in row.items() } for row in reader]
         _sheet_cache["rows"] = rows
         _sheet_cache["ts"] = now
         print(f"DEBUG: загружено строк из Google Sheet: {len(rows)}", flush=True)
@@ -212,15 +213,15 @@ def show_results(chat_id, cat_idx, level_idx, ctry_idx, field_idx):
     bot.send_message(chat_id, f"✨ Found {len(results)} matching opportunit"
                               f"{'y' if len(results) == 1 else 'ies'}:")
 
-    # Telegram допускает до ~4096 символов на сообщение — режем по 8 штук
+    # Telegram допускает до ~4096 символов на сообщение — режем по частям
     chunk = []
     for row in results[:20]:
         chunk.append(format_result(row))
     text = "\n\n".join(chunk)
-    for start in range(0, len(text), 3800):
-        bot.send_message(chat_id, text[start:start + 3800])
-
-    bot.send_message(chat_id, "⬅", reply_markup=back_main_markup())
+    parts = [text[start:start + 3800] for start in range(0, len(text), 3800)]
+    for part in parts[:-1]:
+        bot.send_message(chat_id, part)
+    bot.send_message(chat_id, parts[-1], reply_markup=back_main_markup())
 
 
 # ---------- Хендлеры ----------
