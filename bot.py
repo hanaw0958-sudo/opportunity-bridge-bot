@@ -219,9 +219,8 @@ def show_results(chat_id, cat_idx, level_idx, ctry_idx, field_idx):
         chunk.append(format_result(row))
     text = "\n\n".join(chunk)
     parts = [text[start:start + 3800] for start in range(0, len(text), 3800)]
-    for part in parts[:-1]:
+    for part in parts:
         bot.send_message(chat_id, part)
-    bot.send_message(chat_id, parts[-1], reply_markup=back_main_markup())
 
 
 # ---------- Хендлеры ----------
@@ -229,6 +228,11 @@ def show_results(chat_id, cat_idx, level_idx, ctry_idx, field_idx):
 @bot.message_handler(commands=["start"])
 def cmd_start(message):
     bot.send_message(message.chat.id, data.WELCOME_TEXT)
+    show_main_menu(message.chat.id)
+
+
+@bot.message_handler(commands=["menu"])
+def cmd_menu(message):
     show_main_menu(message.chat.id)
 
 
