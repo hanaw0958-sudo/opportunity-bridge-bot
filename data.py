@@ -14,6 +14,12 @@ STANDARD_COUNTRIES = [
 
 EXCHANGE_COUNTRIES = STANDARD_COUNTRIES + ["🌍 Worldwide"]
 
+INTERNSHIP_COUNTRIES = [
+    "🇺🇸 USA", "🇩🇪 Germany", "🇬🇧 United Kingdom", "🇨🇦 Canada",
+    "🇳🇱 Netherlands", "🇯🇵 Japan", "🇮🇹 Italy", "🇭🇺 Hungary",
+    "🇰🇷 South Korea", "🇨🇳 China",
+]
+
 VOLUNTEER_COUNTRIES = STANDARD_COUNTRIES + [
     "🇺🇿 Uzbekistan", "🇰🇿 Kazakhstan", "🇰🇬 Kyrgyzstan", "🇷🇺 Russian",
 ]
