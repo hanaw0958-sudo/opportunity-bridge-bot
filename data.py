@@ -95,9 +95,9 @@ Umarova Sabina Jonibekovna 🇺🇿
 Hobbies: Dancing, reading.
 Motivation: To become the best version of myself.
 Projects & Experience:
-• Founder of Opportunity Bridge
-• Founder of Economics for Youth
-• Finance member at Hack Tashkent
+Founder of Opportunity Bridge
+Founder of Economics for Youth
+Finance member at Hack Tashkent
 
 Bashkova Daria🇷🇺
 Hobbies: Painting, dancing, language learning.
@@ -110,15 +110,15 @@ Vasiuk Snizhana Yuriivna
 Hobbies: Pilates, reading, painting.
 Motivation: The desire to live abroad as a financially independent person.
 Projects & Experience:
-• Content Manager for the School Safety Team (SST)
-•Participant in the Save the Children International programme
+Content Manager for the School Safety Team (SST)
+Participant in the Save the Children International programme
 
 Kazarian Arina Gareginovna 🇦🇲
 Hobbies: filming, dancing
 Motivation: to study in China
 Projects & experience:
-• Completed internships at Slice Consulting, Digoo IT Distribution, and ReEducate Armenia, doing market research
-• Co-founder of an English speaking club in Armenia "SPEAKS"."
+Completed internships at Slice Consulting, Digoo IT Distribution, and ReEducate Armenia, doing market research
+Co-founder of an English speaking club in Armenia "SPEAKS"."
 )
 
 SHARE_TEXT = (
