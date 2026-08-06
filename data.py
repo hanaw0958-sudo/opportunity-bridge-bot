@@ -27,8 +27,8 @@ VOLUNTEER_COUNTRIES = STANDARD_COUNTRIES + [
 # ---------- Уровни образования ----------
 
 LEVELS_FULL = ["🎒 Middle School", "🏫 High School", "🏛️ Bachelor's", "🎓 Master's", "PhD"]
-LEVELS_NO_SCHOOL = ["Bachelor's", "Master's", "PhD"]
-LEVELS_NO_MIDDLE = ["High School", "Bachelor's", "Master's", "📚 PhD"]
+LEVELS_NO_SCHOOL = ["🏛️ Bachelor's", "🎓 Master's", "📚 PhD"]
+LEVELS_NO_MIDDLE = ["🏫 High School", "🏛️ Bachelor's", "🎓 Master's", "📚 PhD"]
 
 # ---------- Главное меню ----------
 
