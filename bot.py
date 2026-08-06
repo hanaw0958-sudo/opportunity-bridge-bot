@@ -66,26 +66,33 @@ def fetch_rows():
         return _sheet_cache["rows"]  # вернём старый кэш, если запрос упал
 
 
+def normalize(text):
+    return (text or "").strip().replace("\u2019", "'").replace("\u2018", "'").lower()
+
+
 def filter_opportunities(category, level, country, field):
     rows = fetch_rows()
     results = []
     for row in rows:
-        row_type = (row.get("Type") or "").strip().lower()
-        if row_type != category["sheet_type"].lower():
+        row_type = normalize(row.get("Type"))
+        accepted_types = category["sheet_type"]
+        if isinstance(accepted_types, str):
+            accepted_types = [accepted_types]
+        if row_type not in [normalize(t) for t in accepted_types]:
             continue
 
-        row_level = (row.get("Level") or "").strip().lower()
-        if row_level != level.lower():
+        row_level = normalize(row.get("Level"))
+        if row_level != normalize(level):
             continue
 
         if country.lower() != "worldwide":
-            row_country = (row.get("Country") or "").strip().lower()
-            if row_country != country.lower():
+            row_country = normalize(row.get("Country"))
+            if row_country != normalize(country):
                 continue
 
         if field.lower() not in ("all fields",):
-            row_field = (row.get("Field of Study") or "").strip().lower()
-            if row_field != field.lower():
+            row_field = normalize(row.get("Field of Study"))
+            if row_field != normalize(field):
                 continue
 
         results.append(row)
