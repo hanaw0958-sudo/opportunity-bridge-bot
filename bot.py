@@ -70,8 +70,14 @@ def fetch_rows():
         return _sheet_cache["rows"]  # вернём старый кэш, если запрос упал
 
 
+import re
+
+
 def normalize(text):
-    return (text or "").strip().replace("\u2019", "'").replace("\u2018", "'").lower()
+    text = (text or "").strip()
+    text = re.sub(r"^[^\w]+", "", text, flags=re.UNICODE)  # убираем эмодзи/символы в начале
+    text = text.replace("\u2019", "'").replace("\u2018", "'")
+    return text.lower().strip()
 
 
 def filter_opportunities(category, level, country, field):
