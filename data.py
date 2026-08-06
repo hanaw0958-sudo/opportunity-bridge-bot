@@ -152,7 +152,7 @@ FIELDS_COMPETITION = [
 
 FIELDS_RESEARCH = [
     "🔬 STEM & Natural Sciences", "🧬 Biology & Life Sciences", "💻 Computer Science",
-    "⚙️ Engineering", 🧪 Chemistry", "🔭 Physics", "Data Science & AI",
+    "⚙️ Engineering", "🧪 Chemistry", "🔭 Physics", "Data Science & AI",
     "🩺 Medicine & Health Sciences", "🌱 Environmental Science", "🧠 Psychology & Neuroscience",
     "📈 Economics", "🏛️ Political Science", "📚 Humanities & Social Sciences",
     "🌍 International Relations", "🌐 All Fields",
