@@ -17,6 +17,15 @@ from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 import data
 
+# Ссылки на фото команды
+TEAM_PHOTOS = [
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_sabina.jpg",
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_anna.jpg",
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_daria.jpg",
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_snizhana.jpg",
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_arina.jpg",
+]
+
 # ---------- Настройки из переменных окружения ----------
 
 BOT_TOKEN = os.environ["BOT_TOKEN"]
@@ -273,6 +282,8 @@ def handle_callback(call):
         bot.send_message(chat_id, data.COMMUNITY_TEXT, reply_markup=markup)
 
     elif data_str == "menu:about":
+        media = [telebot.types.InputMediaPhoto(url) for url in TEAM_PHOTOS]
+        bot.send_media_group(chat_id, media)
         bot.send_message(chat_id, data.ABOUT_TEXT, reply_markup=back_main_markup())
 
     elif data_str.startswith("cat:"):
