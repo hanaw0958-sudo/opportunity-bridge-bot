@@ -186,15 +186,18 @@ FIELDS_COMPETITION = [
     "🔬 Science & Engineering", "🔢 Mathematics", "💻 Coding", "🤖 Robotics & Technology",
     "💰 Business & Entrepreneurship", "⚖️ Law", "📈 Economics", "🏛️ Political Science", "🗣️ Debate",
     "🎨 Art & Design", "✍️ Writing & Essay", "🌍 MUN", "🌱 Environmental Science", "👑 Leadership",
-    "🩺 Medicine & Health Sciences", "🌐 All Fields",
+    "🩺 Medicine & Health Sciences", "🌐 All Fields", 
 ]
 
 FIELDS_RESEARCH = [
     "🔬 STEM & Natural Sciences", "🧬 Biology & Life Sciences", "💻 Computer Science",
-    "⚙️ Engineering", "🧪 Chemistry", "🔭 Physics", "Data Science & AI",
+    "⚙️ Engineering", "🧪 Chemistry", "🔭 Physics", "📊 Data Science & AI",
     "🩺 Medicine & Health Sciences", "🌱 Environmental Science", "🧠 Psychology & Neuroscience",
     "📈 Economics", "🏛️ Political Science", "📚 Humanities & Social Sciences",
-    "🌍 International Relations", "🌐 All Fields",
+    "🌍 International Relations", "🧑‍🤝‍🧑 Sociology", "🏙️ Society", "⚙️ Technology", "🦉 Philosophy", "🎵 Music/Music Theory",
+    "🎬 Media/Film Studies", "🔢 Mathematics", "📚 Literature", "📜 History", "🚻 Gender Studies",
+    "🎓 Education", "🌿 Ecology", "🎭 Culture Studies", "🗿 Anthropology", "🏗️ Architecture",
+    "🖼️ Art History", "🔭 Astronomy", "💼 Business", "🌐 All Fields",
 ]
 
 FIELDS_VOLUNTEER = [
