@@ -54,9 +54,9 @@ VOLUNTEER_COUNTRIES = STANDARD_COUNTRIES + [
 ]
 # ---------- Уровни образования ----------
 
-LEVELS_FULL = ["🎒 Middle School", "🏫 High School", "🏛️ Bachelor's", "🎓 Master's", "📚 PhD"]
-LEVELS_NO_SCHOOL = ["🏛️ Bachelor's", "🎓 Master's", "📚 PhD"]
-LEVELS_NO_MIDDLE = ["🏫 High School", "🏛️ Bachelor's", "🎓 Master's", "📚 PhD"]
+LEVELS_FULL = ["🎒 Middle School", "🏫 High School", "🏛 Bachelor's", "🎓 Master's", "📚 PhD"]
+LEVELS_NO_SCHOOL = ["🏛 Bachelor's", "🎓 Master's", "📚 PhD"]
+LEVELS_NO_MIDDLE = ["🏫 High School", "🏛 Bachelor's", "🎓 Master's", "📚 PhD"]
 
 # ---------- Главное меню ----------
 
@@ -68,7 +68,7 @@ WELCOME_TEXT = (
     "✨ Tell us a bit about yourself, and we'll find the perfect fit for you!"
 )
 
-MAIN_MENU_TEXT = "⭐ What would you like to do?"
+MAIN_MENU_TEXT = "⭐️ What would you like to do?"
 
 MAIN_MENU_BUTTONS = [
     ("🔍 Find opportunities", "menu:find"),
@@ -90,7 +90,7 @@ GUIDES_TEXT = (
     "💌 Recommendation Letters\n"
     "📋 Required Documents\n"
     "🎤 Interview Preparation\n"
-    "⏱ Application Timeline\n"
+    "⏱️ Application Timeline\n"
     "💻 Useful Resources\n"
     "🏆 Accepted Students' Tips\n\n"
     "💚 Join our Telegram channel to access all guides and future updates:"
@@ -174,16 +174,16 @@ FIND_TEXT = "🌍 Find International Opportunities\n\nSelect the type of opportu
 
 FIELDS_ACADEMIC = [
     "📈 Economics", "💻 Computer Science", "💼 Business & Management", "💰 Finance & Accounting",
-    "🏛️ Political Science", "🌍 International Relations", "🗣️ Languages & Linguistics", "⚖️ Law",
+    "🏛 Political Science", "🌍 International Relations", "🗣 Languages & Linguistics", "⚖️ Law",
     "⚙️ Engineering", "📊 Data Science & AI", "🌱 Natural Sciences", "🩺 Medicine & Health",
-    "🎨 Graphic & Product Design", "🎬 Media & Film", "🏛️ Architecture", "📰 Journalism",
+    "🎨 Graphic & Product Design", "🎬 Media & Film", "🏛 Architecture", "📰 Journalism",
     "📑 Exact Science", "🌐 All Fields",
 ]
 
 FIELDS_SUMMER = [
     "🔬 STEM & Technology", "💻 Computer Science", "💰 Business & Entrepreneurship",
-    "🩺 Medicine & Health Sciences", "⚖️ Law", "🏛️ Political Science", "🎨 Art & Design",
-    "🎭 Performing Arts & Music", "🗣️ Languages", "🌍 International Relations",
+    "🩺 Medicine & Health Sciences", "⚖️ Law", "🏛 Political Science", "🎨 Art & Design",
+    "🎭 Performing Arts & Music", "🗣 Languages", "🌍 International Relations",
     "🌱 Environmental Science", "👑 Leadership", "📚 Humanities & Literature",
     "📑 Exact Science", "🌱 Natural Science", "📸 Media & Journalism", "🧩 Critical Thinking",
     "🌐 All Fields",
@@ -199,7 +199,7 @@ FIELDS_INTERNSHIP = [
 
 FIELDS_COMPETITION = [
     "🔬 Science & Engineering", "🔢 Mathematics", "💻 Coding", "🤖 Robotics & Technology",
-    "💰 Business & Entrepreneurship", "⚖️ Law", "📈 Economics", "🏛️ Political Science", "🗣️ Debate",
+    "💰 Business & Entrepreneurship", "⚖️ Law", "📈 Economics", "🏛 Political Science", "🗣 Debate",
     "🎨 Art & Design", "✍️ Writing & Essay", "🌍 MUN", "🌱 Environmental Science", "👑 Leadership",
     "🩺 Medicine & Health Sciences", "🌐 All Fields", 
 ]
@@ -208,11 +208,11 @@ FIELDS_RESEARCH = [
     "🔬 STEM & Natural Sciences", "🧬 Biology & Life Sciences", "💻 Computer Science",
     "⚙️ Engineering", "🧪 Chemistry", "🔭 Physics", "📊 Data Science & AI",
     "🩺 Medicine & Health Sciences", "🌱 Environmental Science", "🧠 Psychology & Neuroscience",
-    "📈 Economics", "🏛️ Political Science", "📚 Humanities & Social Sciences",
-    "🌍 International Relations", "🧑‍🤝‍🧑 Sociology", "🏙️ Society", "⚙️ Technology", "🦉 Philosophy", "🎵 Music/Music Theory",
+    "📈 Economics", "🏛 Political Science", "📚 Humanities & Social Sciences",
+    "🌍 International Relations", "🧑‍🤝‍🧑 Sociology", "🏙 Society", "⚙️ Technology", "🦉 Philosophy", "🎵 Music/Music Theory",
     "🎬 Media/Film Studies", "🔢 Mathematics", "📚 Literature", "📜 History", "🚻 Gender Studies",
-    "🎓 Education", "🌿 Ecology", "🎭 Culture Studies", "🗿 Anthropology", "🏗️ Architecture",
-    "🖼️ Art History", "🔭 Astronomy", "💼 Business", "🌐 All Fields",
+    "🎓 Education", "🌿 Ecology", "🎭 Culture Studies", "🗿 Anthropology", "🏗 Architecture",
+    "🖼 Art History", "🔭 Astronomy", "💼 Business", "🌐 All Fields",
 ]
 
 FIELDS_VOLUNTEER = [
@@ -233,7 +233,7 @@ CATEGORIES = [
             "First, tell us what level you are applying for."
         ),
         "levels": LEVELS_NO_SCHOOL,
-        "countries": STANDARD_COUNTRIES,
+        "countries": SCHOLARSHIP_COUNTRIES,
         "fields": FIELDS_ACADEMIC,
     },
     {
@@ -259,7 +259,7 @@ CATEGORIES = [
             "🎓 First, choose your academic level:"
         ),
         "levels": LEVELS_FULL,
-        "countries": STANDARD_COUNTRIES,
+        "countries": SUMMER_COUNTRIES,
         "fields": FIELDS_SUMMER,
     },
     {
@@ -287,7 +287,7 @@ CATEGORIES = [
             "🎓 Choose your academic level to begin:"
         ),
         "levels": LEVELS_FULL,
-        "countries": STANDARD_COUNTRIES,
+        "countries": COMPETITION_COUNTRIES,
         "fields": FIELDS_COMPETITION,
     },
     {
@@ -301,7 +301,7 @@ CATEGORIES = [
             "🎓 Choose your academic level:"
         ),
         "levels": LEVELS_FULL,
-        "countries": STANDARD_COUNTRIES,
+        "countries": RESEARCH_COUNTRIES,
         "fields": FIELDS_RESEARCH,
     },
     {
