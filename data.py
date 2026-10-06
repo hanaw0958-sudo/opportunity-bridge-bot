@@ -98,13 +98,6 @@ ABOUT_TEXT = (
     "• Finance member at Hack Tashkent\n"
     "• Ambassador Research Hub\n"
     "• Research Lead\n\n"
-    "Kuznetsova Anna 🇷🇺\n"
-    "Hobbies: art, learning languages, skateboarding\n"
-    "Motivation: Get a top-tier education in USA, receive a scholarship and become the best version of myself\n"
-    "Projects & Experience:\n"
-    "• Founder of catseng online school\n"
-    "• Winner in 2 national English language olympiads\n"
-    "• 10 years of learning English & 1.5 years of learning Chinese\n\n"
     "Bashkova Daria 🇷🇺\n"
     "Hobbies: Painting, dancing, language learning.\n"
     "Motivation: To achieve complete financial independence, receive a top-tier European education, and build a successful international career in business and art.\n"
@@ -117,12 +110,6 @@ ABOUT_TEXT = (
     "Projects & Experience:\n"
     "• Content Manager for the School Safety Team (SST)\n"
     "• Participant in the Save the Children International programme\n\n"
-    "Kazarian Arina Gareginovna 🇦🇲\n"
-    "Hobbies: filming, dancing\n"
-    "Motivation: to study in China\n"
-    "Projects & Experience:\n"
-    "• Completed internships at Slice Consulting, Digoo IT Distribution, and ReEducate Armenia, doing market research\n"
-    "• Co-founder of an English speaking club in Armenia \"SPEAKS\""
 )
 
 SHARE_TEXT = (
