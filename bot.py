@@ -19,16 +19,16 @@ import data
 
 # Ссылки на фото команды
 TEAM_PHOTOS = [
-    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_sabina.jpg",
-    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_daria.jpg",
-    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_snizhana.jpg",
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_sabina.jpg",
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_daria.jpg",
+    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_snizhana.jpg",
 ]
 
 # ---------- Настройки из переменных окружения ----------
 
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 SHEET_ID = os.environ["SHEET_ID"]
-WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "")  # заполняется на хостинге, см. README
+WEBHOOK_URL = os.environ.get("WEBHOOK_URL", "")  # заполняется на хостинге, см. README
 
 SHEET_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv"
 
@@ -44,7 +44,7 @@ logging.basicConfig(level=logging.INFO)
 telebot.logger.setLevel(logging.ERROR)
 telebot.logger.addHandler(logging.StreamHandler())
 
-app = Flask(__name__)
+app = Flask(name)
 
 # chat_id -> {"cat": int, "level_idx": int, "ctry_idx": int}
 user_state = {}
@@ -57,294 +57,294 @@ CACHE_SECONDS = 120
 # ---------- Работа с Google Sheets ----------
 
 def fetch_rows():
-    now = time.time()
-    if now - _sheet_cache["ts"] < CACHE_SECONDS and _sheet_cache["rows"]:
-        print(f"DEBUG: используем кэш, строк: {len(_sheet_cache['rows'])}", flush=True)
-        return _sheet_cache["rows"]
-    try:
-        resp = requests.get(SHEET_CSV_URL, timeout=10)
-        resp.encoding = "utf-8"
-        resp.raise_for_status()
-        reader = csv.DictReader(io.StringIO(resp.text))
-        reader.fieldnames = [h.strip() for h in reader.fieldnames]
-        rows = [{ (k or "").strip(): v for k, v in row.items() } for row in reader]
-        _sheet_cache["rows"] = rows
-        _sheet_cache["ts"] = now
-        print(f"DEBUG: загружено строк из Google Sheet: {len(rows)}", flush=True)
-        if rows:
-            print(f"DEBUG: колонки: {list(rows[0].keys())}", flush=True)
-        return rows
-    except Exception as e:
-        print("Ошибка чтения Google Sheet:", e, flush=True)
-        return _sheet_cache["rows"]  # вернём старый кэш, если запрос упал
+    now = time.time()
+    if now - _sheet_cache["ts"] < CACHE_SECONDS and _sheet_cache["rows"]:
+        print(f"DEBUG: используем кэш, строк: {len(_sheet_cache['rows'])}", flush=True)
+        return _sheet_cache["rows"]
+    try:
+        resp = requests.get(SHEET_CSV_URL, timeout=10)
+        resp.encoding = "utf-8"
+        resp.raise_for_status()
+        reader = csv.DictReader(io.StringIO(resp.text))
+        reader.fieldnames = [h.strip() for h in reader.fieldnames]
+        rows = [{ (k or "").strip(): v for k, v in row.items() } for row in reader]
+        _sheet_cache["rows"] = rows
+        _sheet_cache["ts"] = now
+        print(f"DEBUG: загружено строк из Google Sheet: {len(rows)}", flush=True)
+        if rows:
+            print(f"DEBUG: колонки: {list(rows[0].keys())}", flush=True)
+        return rows
+    except Exception as e:
+        print("Ошибка чтения Google Sheet:", e, flush=True)
+        return _sheet_cache["rows"]  # вернём старый кэш, если запрос упал
 
 
 import re
 
 
 def normalize(text):
-    text = (text or "").strip()
-    text = re.sub(r"^[^\w]+", "", text, flags=re.UNICODE)  # убираем эмодзи/символы в начале
-    text = text.replace("\u2019", "'").replace("\u2018", "'")
-    return text.lower().strip()
+    text = (text or "").strip()
+    text = re.sub(r"^[^\w]+", "", text, flags=re.UNICODE)  # убираем эмодзи/символы в начале
+    text = text.replace("\u2019", "'").replace("\u2018", "'")
+    return text.lower().strip()
 
 
 def filter_opportunities(category, level, country, field):
-    rows = fetch_rows()
-    print(f"DEBUG: фильтр — category={category['sheet_type']!r} level={level!r} "
-          f"country={country!r} field={field!r}, всего строк={len(rows)}", flush=True)
+    rows = fetch_rows()
+    print(f"DEBUG: фильтр — category={category['sheet_type']!r} level={level!r} "
+          f"country={country!r} field={field!r}, всего строк={len(rows)}", flush=True)
 
-    after_type = after_level = after_country = 0
-    results = []
-    for row in rows:
-        row_type = normalize(row.get("Type"))
-        accepted_types = category["sheet_type"]
-        if isinstance(accepted_types, str):
-            accepted_types = [accepted_types]
-        if row_type not in [normalize(t) for t in accepted_types]:
-            continue
-        after_type += 1
+    after_type = after_level = after_country = 0
+    results = []
+    for row in rows:
+        row_type = normalize(row.get("Type"))
+        accepted_types = category["sheet_type"]
+        if isinstance(accepted_types, str):
+            accepted_types = [accepted_types]
+        if row_type not in [normalize(t) for t in accepted_types]:
+            continue
+        after_type += 1
 
-        row_level = normalize(row.get("Level"))
-        if row_level != normalize(level):
-            continue
-        after_level += 1
+        row_level = normalize(row.get("Level"))
+        if row_level != normalize(level):
+            continue
+        after_level += 1
 
-        if country.lower() != "worldwide":
-            row_country = normalize(row.get("Country"))
-            if row_country != normalize(country):
-                continue
-        after_country += 1
+        if country.lower() != "worldwide":
+            row_country = normalize(row.get("Country"))
+            if row_country != normalize(country):
+                continue
+        after_country += 1
 
-        if field.lower() not in ("all fields",):
-            row_field = normalize(row.get("Field of Study"))
-            if row_field != normalize(field):
-                continue
+        if field.lower() not in ("all fields",):
+            row_field = normalize(row.get("Field of Study"))
+            if row_field != normalize(field):
+                continue
 
-        results.append(row)
+        results.append(row)
 
-    print(f"DEBUG: после Type={after_type}, после Level={after_level}, "
-          f"после Country={after_country}, итог={len(results)}", flush=True)
-    return results
+    print(f"DEBUG: после Type={after_type}, после Level={after_level}, "
+          f"после Country={after_country}, итог={len(results)}", flush=True)
+    return results
 
 
 def format_result(row):
-    parts = [f"🎓 Opportunity: {row.get('Opportunity', '').strip()}"]
-    if row.get("Country"):
-        parts.append(f"🌍 Country: {row['Country'].strip()}")
-    if row.get("Field of Study"):
-        parts.append(f"📚 Field of Study: {row['Field of Study'].strip()}")
-    if row.get("Funding"):
-        parts.append(f"💰 Funding: {row['Funding'].strip()}")
-    if row.get("Deadline"):
-        parts.append(f"⏳ Deadline: {row['Deadline'].strip()}")
-    if row.get("Requirements"):
-        parts.append(f"📋 Requirements: {row['Requirements'].strip()}")
-    if row.get("Official Link"):
-        parts.append(f"🔗 {row['Official Link'].strip()}")
-    return "\n".join(parts)
+    parts = [f"🎓 Opportunity: {row.get('Opportunity', '').strip()}"]
+    if row.get("Country"):
+        parts.append(f"🌍 Country: {row['Country'].strip()}")
+    if row.get("Field of Study"):
+        parts.append(f"📚 Field of Study: {row['Field of Study'].strip()}")
+    if row.get("Funding"):
+        parts.append(f"💰 Funding: {row['Funding'].strip()}")
+    if row.get("Deadline"):
+        parts.append(f"⏳ Deadline: {row['Deadline'].strip()}")
+    if row.get("Requirements"):
+        parts.append(f"📋 Requirements: {row['Requirements'].strip()}")
+    if row.get("Official Link"):
+        parts.append(f"🔗 {row['Official Link'].strip()}")
+    return "\n".join(parts)
 
 
 # ---------- Клавиатуры ----------
 
-def markup_from_pairs(pairs, row_width=2, back_data="menu:main", back_text="⬅ Back to Main Menu"):
-    markup = InlineKeyboardMarkup(row_width=row_width)
-    buttons = [InlineKeyboardButton(text, callback_data=cb) for text, cb in pairs]
-    markup.add(*buttons)
-    if back_data:
-        markup.add(InlineKeyboardButton(back_text, callback_data=back_data))
-    return markup
+def markup_from_pairs(pairs, row_width=2, back_data="menu:main", back_text="⬅️ Back to Main Menu"):
+    markup = InlineKeyboardMarkup(row_width=row_width)
+    buttons = [InlineKeyboardButton(text, callback_data=cb) for text, cb in pairs]
+    markup.add(*buttons)
+    if back_data:
+        markup.add(InlineKeyboardButton(back_text, callback_data=back_data))
+    return markup
 
 
 def main_menu_markup():
-    markup = InlineKeyboardMarkup(row_width=1)
-    for text, cb in data.MAIN_MENU_BUTTONS:
-        markup.add(InlineKeyboardButton(text, callback_data=cb))
-    return markup
+    markup = InlineKeyboardMarkup(row_width=1)
+    for text, cb in data.MAIN_MENU_BUTTONS:
+        markup.add(InlineKeyboardButton(text, callback_data=cb))
+    return markup
 
 
 def back_main_markup():
-    markup = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton("⬅ Back to Main Menu", callback_data="menu:main"))
-    return markup
+    markup = InlineKeyboardMarkup()
+    markup.add(InlineKeyboardButton("⬅️ Back to Main Menu", callback_data="menu:main"))
+    return markup
 
 
 def share_markup():
-    markup = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton("✅ I'm Done", callback_data="share:done"))
-    markup.add(InlineKeyboardButton("⬅ Back", callback_data="menu:main"))
-    return markup
+    markup = InlineKeyboardMarkup()
+    markup.add(InlineKeyboardButton("✅ I'm Done", callback_data="share:done"))
+    markup.add(InlineKeyboardButton("⬅️ Back", callback_data="menu:main"))
+    return markup
 
 
 # ---------- Экраны ----------
 
 def show_main_menu(chat_id):
-    bot.send_message(chat_id, data.MAIN_MENU_TEXT, reply_markup=main_menu_markup())
+    bot.send_message(chat_id, data.MAIN_MENU_TEXT, reply_markup=main_menu_markup())
 
 
 def show_categories(chat_id):
-    pairs = [(c["button"], f"cat:{i}") for i, c in enumerate(data.CATEGORIES)]
-    bot.send_message(chat_id, data.FIND_TEXT, reply_markup=markup_from_pairs(pairs))
+    pairs = [(c["button"], f"cat:{i}") for i, c in enumerate(data.CATEGORIES)]
+    bot.send_message(chat_id, data.FIND_TEXT, reply_markup=markup_from_pairs(pairs))
 
 
 def show_levels(chat_id, cat_idx):
-    category = data.CATEGORIES[cat_idx]
-    pairs = [(lvl, f"lvl:{i}") for i, lvl in enumerate(category["levels"])]
-    bot.send_message(chat_id, category["intro"], reply_markup=markup_from_pairs(pairs))
+    category = data.CATEGORIES[cat_idx]
+    pairs = [(lvl, f"lvl:{i}") for i, lvl in enumerate(category["levels"])]
+    bot.send_message(chat_id, category["intro"], reply_markup=markup_from_pairs(pairs))
 
 
 def show_countries(chat_id, cat_idx, level_idx):
-    category = data.CATEGORIES[cat_idx]
-    pairs = [(c, f"ctry:{i}") for i, c in enumerate(category["countries"])]
-    bot.send_message(chat_id, data.COUNTRY_STEP_TEXT, reply_markup=markup_from_pairs(pairs))
+    category = data.CATEGORIES[cat_idx]
+    pairs = [(c, f"ctry:{i}") for i, c in enumerate(category["countries"])]
+    bot.send_message(chat_id, data.COUNTRY_STEP_TEXT, reply_markup=markup_from_pairs(pairs))
 
 
 def show_fields(chat_id, cat_idx):
-    category = data.CATEGORIES[cat_idx]
-    pairs = [(f, f"fld:{i}") for i, f in enumerate(category["fields"])]
-    bot.send_message(chat_id, data.FIELD_STEP_TEXT, reply_markup=markup_from_pairs(pairs))
+    category = data.CATEGORIES[cat_idx]
+    pairs = [(f, f"fld:{i}") for i, f in enumerate(category["fields"])]
+    bot.send_message(chat_id, data.FIELD_STEP_TEXT, reply_markup=markup_from_pairs(pairs))
 
 
 def show_results(chat_id, cat_idx, level_idx, ctry_idx, field_idx):
-    category = data.CATEGORIES[cat_idx]
-    level = category["levels"][level_idx]
-    country = category["countries"][ctry_idx]
-    field = category["fields"][field_idx]
+    category = data.CATEGORIES[cat_idx]
+    level = category["levels"][level_idx]
+    country = category["countries"][ctry_idx]
+    field = category["fields"][field_idx]
 
-    results = filter_opportunities(category, level, country, field)
+    results = filter_opportunities(category, level, country, field)
 
-    if not results:
-        bot.send_message(chat_id, data.NO_RESULTS_TEXT, reply_markup=back_main_markup())
-        return
+    if not results:
+        bot.send_message(chat_id, data.NO_RESULTS_TEXT, reply_markup=back_main_markup())
+        return
 
-    bot.send_message(chat_id, f"✨ Found {len(results)} matching opportunit"
-                              f"{'y' if len(results) == 1 else 'ies'}:")
+    bot.send_message(chat_id, f"✨ Found {len(results)} matching opportunit"
+                              f"{'y' if len(results) == 1 else 'ies'}:")
 
-    # Telegram допускает до ~4096 символов на сообщение — режем по частям
-    chunk = []
-    for row in results[:20]:
-        chunk.append(format_result(row))
-    text = "\n\n".join(chunk)
-    parts = [text[start:start + 3800] for start in range(0, len(text), 3800)]
-    for part in parts:
-        bot.send_message(chat_id, part)
+    # Telegram допускает до ~4096 символов на сообщение — режем по частям
+    chunk = []
+    for row in results[:20]:
+        chunk.append(format_result(row))
+    text = "\n\n".join(chunk)
+    parts = [text[start:start + 3800] for start in range(0, len(text), 3800)]
+    for part in parts:
+        bot.send_message(chat_id, part)
 
 
 # ---------- Хендлеры ----------
 
 @bot.message_handler(commands=["start"])
 def cmd_start(message):
-    bot.send_message(message.chat.id, data.WELCOME_TEXT)
-    show_main_menu(message.chat.id)
+    bot.send_message(message.chat.id, data.WELCOME_TEXT)
+    show_main_menu(message.chat.id)
 
 
 @bot.message_handler(commands=["menu"])
 def cmd_menu(message):
-    show_main_menu(message.chat.id)
+    show_main_menu(message.chat.id)
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def handle_callback(call):
-    data_str = call.data
-    chat_id = call.message.chat.id
+    data_str = call.data
+    chat_id = call.message.chat.id
 
-    # Удаляем предыдущее сообщение с кнопками, чтобы в чате не копились
-    # старые меню, которыми пользователь уже воспользовался.
-    try:
-        bot.delete_message(chat_id, call.message.message_id)
-    except Exception:
-        pass  # сообщение могло быть уже удалено или слишком старое — не страшно
+    # Удаляем предыдущее сообщение с кнопками, чтобы в чате не копились
+    # старые меню, которыми пользователь уже воспользовался.
+    try:
+        bot.delete_message(chat_id, call.message.message_id)
+    except Exception:
+        pass  # сообщение могло быть уже удалено или слишком старое — не страшно
 
-    if data_str == "menu:main":
-        show_main_menu(chat_id)
+    if data_str == "menu:main":
+        show_main_menu(chat_id)
 
-    elif data_str == "menu:find":
-        show_categories(chat_id)
+    elif data_str == "menu:find":
+        show_categories(chat_id)
 
-    elif data_str == "menu:share":
-        bot.send_message(chat_id, data.SHARE_TEXT, reply_markup=share_markup())
+    elif data_str == "menu:share":
+        bot.send_message(chat_id, data.SHARE_TEXT, reply_markup=share_markup())
 
-    elif data_str == "share:done":
-        bot.send_message(chat_id, data.THANK_YOU_TEXT, reply_markup=back_main_markup())
+    elif data_str == "share:done":
+        bot.send_message(chat_id, data.THANK_YOU_TEXT, reply_markup=back_main_markup())
 
-    elif data_str == "menu:guides":
-        markup = InlineKeyboardMarkup()
-        markup.add(InlineKeyboardButton("📣 Open Channel", url=data.GUIDES_CHANNEL_URL))
-        markup.add(InlineKeyboardButton("⬅ Back to Main Menu", callback_data="menu:main"))
-        bot.send_message(chat_id, data.GUIDES_TEXT, reply_markup=markup)
+    elif data_str == "menu:guides":
+        markup = InlineKeyboardMarkup()
+        markup.add(InlineKeyboardButton("📣 Open Channel", url=data.GUIDES_CHANNEL_URL))
+        markup.add(InlineKeyboardButton("⬅️ Back to Main Menu", callback_data="menu:main"))
+        bot.send_message(chat_id, data.GUIDES_TEXT, reply_markup=markup)
 
-    elif data_str == "menu:community":
-        markup = InlineKeyboardMarkup()
-        markup.add(InlineKeyboardButton("🤝 Join Community", url=data.COMMUNITY_CHAT_URL))
-        markup.add(InlineKeyboardButton("⬅ Back to Main Menu", callback_data="menu:main"))
-        bot.send_message(chat_id, data.COMMUNITY_TEXT, reply_markup=markup)
+    elif data_str == "menu:community":
+        markup = InlineKeyboardMarkup()
+        markup.add(InlineKeyboardButton("🤝 Join Community", url=data.COMMUNITY_CHAT_URL))
+        markup.add(InlineKeyboardButton("⬅️ Back to Main Menu", callback_data="menu:main"))
+        bot.send_message(chat_id, data.COMMUNITY_TEXT, reply_markup=markup)
 
-    elif data_str == "menu:about":
-        media = [telebot.types.InputMediaPhoto(url) for url in TEAM_PHOTOS]
-        bot.send_media_group(chat_id, media)
-        bot.send_message(chat_id, data.ABOUT_TEXT, reply_markup=back_main_markup())
+    elif data_str == "menu:about":
+        media = [telebot.types.InputMediaPhoto(url) for url in TEAM_PHOTOS]
+        bot.send_media_group(chat_id, media)
+        bot.send_message(chat_id, data.ABOUT_TEXT, reply_markup=back_main_markup())
 
-    elif data_str.startswith("cat:"):
-        idx = int(data_str.split(":")[1])
-        user_state[chat_id] = {"cat": idx}
-        show_levels(chat_id, idx)
+    elif data_str.startswith("cat:"):
+        idx = int(data_str.split(":")[1])
+        user_state[chat_id] = {"cat": idx}
+        show_levels(chat_id, idx)
 
-    elif data_str.startswith("lvl:"):
-        idx = int(data_str.split(":")[1])
-        state = user_state.setdefault(chat_id, {})
-        state["level_idx"] = idx
-        show_countries(chat_id, state["cat"], idx)
+    elif data_str.startswith("lvl:"):
+        idx = int(data_str.split(":")[1])
+        state = user_state.setdefault(chat_id, {})
+        state["level_idx"] = idx
+        show_countries(chat_id, state["cat"], idx)
 
-    elif data_str.startswith("ctry:"):
-        idx = int(data_str.split(":")[1])
-        state = user_state.setdefault(chat_id, {})
-        state["ctry_idx"] = idx
-        show_fields(chat_id, state["cat"])
+    elif data_str.startswith("ctry:"):
+        idx = int(data_str.split(":")[1])
+        state = user_state.setdefault(chat_id, {})
+        state["ctry_idx"] = idx
+        show_fields(chat_id, state["cat"])
 
-    elif data_str.startswith("fld:"):
-        idx = int(data_str.split(":")[1])
-        state = user_state.get(chat_id, {})
-        if "cat" in state and "level_idx" in state and "ctry_idx" in state:
-            show_results(chat_id, state["cat"], state["level_idx"], state["ctry_idx"], idx)
+    elif data_str.startswith("fld:"):
+        idx = int(data_str.split(":")[1])
+        state = user_state.get(chat_id, {})
+        if "cat" in state and "level_idx" in state and "ctry_idx" in state:
+            show_results(chat_id, state["cat"], state["level_idx"], state["ctry_idx"], idx)
 
-    try:
-        bot.answer_callback_query(call.id)
-    except Exception:
-        pass
+    try:
+        bot.answer_callback_query(call.id)
+    except Exception:
+        pass
 
 
 # ---------- Flask / webhook ----------
 
 @app.route(WEBHOOK_PATH, methods=["POST"])
 def telegram_webhook():
-    json_str = request.get_data().decode("utf-8")
-    print("INCOMING UPDATE:", json_str, flush=True)
-    try:
-        update = telebot.types.Update.de_json(json_str)
-        bot.process_new_updates([update])
-        print("UPDATE PROCESSED OK", flush=True)
-    except Exception:
-        import traceback
-        traceback.print_exc()
-    return "OK", 200
+    json_str = request.get_data().decode("utf-8")
+    print("INCOMING UPDATE:", json_str, flush=True)
+    try:
+        update = telebot.types.Update.de_json(json_str)
+        bot.process_new_updates([update])
+        print("UPDATE PROCESSED OK", flush=True)
+    except Exception:
+        import traceback
+        traceback.print_exc()
+    return "OK", 200
 
 
 @app.route("/")
 def index():
-    return "Opportunity Bridge bot is running.", 200
+    return "Opportunity Bridge bot is running.", 200
 
 
 # Вебхук ставим сразу при импорте модуля — gunicorn импортирует bot.py,
-# но не выполняет блок "if __name__ == '__main__'", так что регистрировать
+# но не выполняет блок "if name == 'main'", так что регистрировать
 # вебхук нужно здесь, а не только при прямом запуске.
 if WEBHOOK_URL:
-    try:
-        bot.remove_webhook()
-        bot.set_webhook(url=f"{WEBHOOK_URL}{WEBHOOK_PATH}")
-        print("Webhook set to:", f"{WEBHOOK_URL}{WEBHOOK_PATH}")
-    except Exception as e:
-        print("Не удалось установить вебхук:", e)
+    try:
+        bot.remove_webhook()
+        bot.set_webhook(url=f"{WEBHOOK_URL}{WEBHOOK_PATH}")
+        print("Webhook set to:", f"{WEBHOOK_URL}{WEBHOOK_PATH}")
+    except Exception as e:
+        print("Не удалось установить вебхук:", e)
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+if name == "main":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
