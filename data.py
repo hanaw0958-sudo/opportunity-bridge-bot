@@ -12,16 +12,38 @@ STANDARD_COUNTRIES = [
     "🇰🇷 South Korea", "🇨🇳 China",
 ]
 
-EXCHANGE_COUNTRIES = STANDARD_COUNTRIES + ["🌍 Worldwide"]
-
-INTERNSHIP_COUNTRIES = [
-    "🇺🇸 USA", "🇩🇪 Germany", "🇬🇧 United Kingdom", "🇨🇦 Canada",
-    "🇳🇱 Netherlands", "🇯🇵 Japan", "🇮🇹 Italy", "🇭🇺 Hungary",
-    "🇰🇷 South Korea", "🇨🇳 China",
+SCHOLARSHIP_COUNTRIES = STANDARD_COUNTRIES + [
+    "🇹🇷 Turkey", "🇸🇪 Sweden", "🇨🇭 Switzerland", "🇫🇷 France",
+    "🇦🇺 Australia", "🇳🇿 New Zealand", "🇹🇼 Taiwan", "🇭🇰 Hong Kong",
+    "🇸🇦 Saudi Arabia", "🇦🇪 United Arab Emirates", "🇰🇿 Kazakhstan",
+    "🇸🇬 Singapore", "🇪🇺 Europe", "🌍 Worldwide",
 ]
+
+INTERNSHIP_COUNTRIES = STANDARD_COUNTRIES + [
+    "🇨🇭 Switzerland", "🇫🇷 France", "🇧🇪 Belgium", "🇦🇹 Austria",
+    "🇪🇸 Spain", "🌍 Worldwide",
+]
+
+RESEARCH_COUNTRIES = STANDARD_COUNTRIES + [
+    "🇸🇦 Saudi Arabia", "🇨🇭 Switzerland",
+]
+
+SUMMER_COUNTRIES = STANDARD_COUNTRIES + [
+    "🇨🇭 Switzerland", "🇫🇷 France", "🇦🇹 Austria", "🇳🇴 Norway",
+    "🇫🇮 Finland", "🇩🇰 Denmark", "🇪🇸 Spain", "🇮🇱 Israel",
+]
+
+COMPETITION_COUNTRIES = STANDARD_COUNTRIES + [
+    "🇵🇱 Poland", "🇹🇼 Taiwan", "🇸🇪 Sweden", "🇨🇭 Switzerland",
+    "🇨🇿 Czech Republic", "🇸🇬 Singapore", "🇩🇰 Denmark",
+    "🇧🇬 Bulgaria", "🌍 Worldwide",
+]
+
+EXCHANGE_COUNTRIES = STANDARD_COUNTRIES + ["🌍 Worldwide", "🇪🇺 Europe"]
 
 VOLUNTEER_COUNTRIES = STANDARD_COUNTRIES + [
     "🇺🇿 Uzbekistan", "🇰🇿 Kazakhstan", "🇰🇬 Kyrgyzstan", "🇷🇺 Russian",
+    "🇫🇷 France", "🇦🇺 Australia", "🇪🇺 Europe", "🌍 Worldwide",
 ]
 
 # ---------- Уровни образования ----------
