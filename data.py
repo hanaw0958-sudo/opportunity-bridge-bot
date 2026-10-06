@@ -12,6 +12,7 @@ STANDARD_COUNTRIES = [
     "🇰🇷 South Korea", "🇨🇳 China",
 ]
 
+# Scholarships
 SCHOLARSHIP_COUNTRIES = STANDARD_COUNTRIES + [
     "🇹🇷 Turkey", "🇸🇪 Sweden", "🇨🇭 Switzerland", "🇫🇷 France",
     "🇦🇺 Australia", "🇳🇿 New Zealand", "🇹🇼 Taiwan", "🇭🇰 Hong Kong",
@@ -19,33 +20,38 @@ SCHOLARSHIP_COUNTRIES = STANDARD_COUNTRIES + [
     "🇸🇬 Singapore", "🇪🇺 Europe", "🌍 Worldwide",
 ]
 
+# Internships
 INTERNSHIP_COUNTRIES = STANDARD_COUNTRIES + [
     "🇨🇭 Switzerland", "🇫🇷 France", "🇧🇪 Belgium", "🇦🇹 Austria",
     "🇪🇸 Spain", "🌍 Worldwide",
 ]
 
+# Research Opportunities
 RESEARCH_COUNTRIES = STANDARD_COUNTRIES + [
     "🇸🇦 Saudi Arabia", "🇨🇭 Switzerland",
 ]
 
+# Summer Schools
 SUMMER_COUNTRIES = STANDARD_COUNTRIES + [
     "🇨🇭 Switzerland", "🇫🇷 France", "🇦🇹 Austria", "🇳🇴 Norway",
     "🇫🇮 Finland", "🇩🇰 Denmark", "🇪🇸 Spain", "🇮🇱 Israel",
 ]
 
+# Competitions
 COMPETITION_COUNTRIES = STANDARD_COUNTRIES + [
     "🇵🇱 Poland", "🇹🇼 Taiwan", "🇸🇪 Sweden", "🇨🇭 Switzerland",
     "🇨🇿 Czech Republic", "🇸🇬 Singapore", "🇩🇰 Denmark",
     "🇧🇬 Bulgaria", "🌍 Worldwide",
 ]
 
+# Exchange
 EXCHANGE_COUNTRIES = STANDARD_COUNTRIES + ["🌍 Worldwide", "🇪🇺 Europe"]
 
+# Volunteer
 VOLUNTEER_COUNTRIES = STANDARD_COUNTRIES + [
     "🇺🇿 Uzbekistan", "🇰🇿 Kazakhstan", "🇰🇬 Kyrgyzstan", "🇷🇺 Russian",
     "🇫🇷 France", "🇦🇺 Australia", "🇪🇺 Europe", "🌍 Worldwide",
 ]
-
 # ---------- Уровни образования ----------
 
 LEVELS_FULL = ["🎒 Middle School", "🏫 High School", "🏛️ Bachelor's", "🎓 Master's", "📚 PhD"]
