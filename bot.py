@@ -20,10 +20,8 @@ import data
 # Ссылки на фото команды
 TEAM_PHOTOS = [
     "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_sabina.jpg",
-    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_anna.jpg",
     "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_daria.jpg",
     "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_snizhana.jpg",
-    "https://raw.githubusercontent.com/hanaw0958-sudo/opportunity-bridge-bot/main/IMG_arina.jpg",
 ]
 
 # ---------- Настройки из переменных окружения ----------
