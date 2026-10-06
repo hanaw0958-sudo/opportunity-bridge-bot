@@ -44,7 +44,7 @@ logging.basicConfig(level=logging.INFO)
 telebot.logger.setLevel(logging.ERROR)
 telebot.logger.addHandler(logging.StreamHandler())
 
-app = Flask(name)
+app = Flask(__name__)
 
 # chat_id -> {"cat": int, "level_idx": int, "ctry_idx": int}
 user_state = {}
@@ -345,6 +345,8 @@ if WEBHOOK_URL:
     except Exception as e:
         print("Не удалось установить вебхук:", e)
 
-if name == "main":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+if __name == "__main__":
+    port = 
+int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", 
+port=port)
